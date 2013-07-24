@@ -1,0 +1,26 @@
+#!/bin/bash
+WD=$(dirname $0)
+WD=$(cd $WD; pwd)
+source ${WD}/kbuild_include.sh
+
+mkdir -p ${WORKDIR}
+cd ${WORKDIR}
+
+cp /boot/config-${VER} .config
+cp /usr/src/linux-headers-${VER}/Module.symvers .
+
+cd ${KERNELDIR}
+
+make EXTRAVERSION=${EXTRAVERSION} O=${WORKDIR} oldconfig
+make EXTRAVERSION=${EXTRAVERSION} O=${WORKDIR} prepare
+make EXTRAVERSION=${EXTRAVERSION} O=${WORKDIR} outputmakefile
+make EXTRAVERSION=${EXTRAVERSION} O=${WORKDIR} archprepare
+make EXTRAVERSION=${EXTRAVERSION} O=${WORKDIR} modules SUBDIRS=scripts
+make EXTRAVERSION=${EXTRAVERSION} O=${WORKDIR} modules_prepare 
+
+
+# hello uses /dev/hello major 89
+if [[ ! -e /dev/hello ]];then
+  sudo mknod  /dev/hello c  89 0
+  sudo chmod 777 /dev/hello
+fi

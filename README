@@ -1,0 +1,16 @@
+=========================================================
+This is an easy way to get started creating linux modules
+=========================================================
+
+
+This is based on http://www.freesoftwaremagazine.com/articles/drivers_linux
+Many thanks!
+
+Specifically tailored for ubuntu 12.04.
+
+
+Many times we want to start building modules on our laptops / vms.
+This will get you started quickly.
+
+
+Run ./setup_kbuild
