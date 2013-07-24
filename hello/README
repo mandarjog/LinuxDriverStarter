@@ -1,0 +1,5 @@
+To Build:
+make EXTRAVERSION=-23-generic -C path_to_mytree M=`pwd` modules
+
+To Clean:
+make EXTRAVERSION=-23-generic -C path_to_mytree M=`pwd` clean
