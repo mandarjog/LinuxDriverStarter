@@ -14,7 +14,6 @@ ssize_t
 hello_read (struct file *filp, char *buf, size_t count, loff_t * f_pos)
 {
 
-  printk ("<1> %s Hello world!\n", __FUNCTION__);
   /* Transfering data to user space */
   copy_to_user (buf, "Hello", 6);
   return 6;
